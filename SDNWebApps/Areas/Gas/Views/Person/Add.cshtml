@@ -1,0 +1,10 @@
+﻿@model SDNWebApps.Areas.Gas.Models.Person.AddViewModel
+
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm())
+{   
+    @Html.LabelFor(m => m.Personname) 
+    @Html.TextBoxFor(m => m.Personname)<br />
+
+<input type="submit" value="Add" />
+}

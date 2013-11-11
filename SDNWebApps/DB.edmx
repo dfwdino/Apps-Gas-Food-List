@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SDNAppsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="SDNAppsModelStoreContainer">
+          <EntitySet Name="Autos" EntityType="SDNAppsModel.Store.Autos" store:Type="Tables" Schema="Gas" />
+          <EntitySet Name="Gallons" EntityType="SDNAppsModel.Store.Gallons" store:Type="Tables" Schema="Gas" />
+          <EntitySet Name="People" EntityType="SDNAppsModel.Store.People" store:Type="Tables" Schema="Gas" />
+          <AssociationSet Name="FK_Autos_People" Association="SDNAppsModel.Store.FK_Autos_People">
+            <End Role="People" EntitySet="People" />
+            <End Role="Autos" EntitySet="Autos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gallons_Autos" Association="SDNAppsModel.Store.FK_Gallons_Autos">
+            <End Role="Autos" EntitySet="Autos" />
+            <End Role="Gallons" EntitySet="Gallons" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Autos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="WhosCar" Type="int" Nullable="false" />
+          <Property Name="AutoName" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Gallons">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AutoID" Type="int" Nullable="false" />
+          <Property Name="TotalMiles" Type="int" Nullable="false" />
+          <Property Name="DrivenMiles" Type="int" Nullable="false" />
+          <Property Name="TotalGallons" Type="float" Nullable="false" />
+          <Property Name="TotalPrice" Type="money" />
+          <Property Name="GasDate" Type="date" />
+          <Property Name="TankFilled" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="People">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PersonName" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Autos_People">
+          <End Role="People" Type="SDNAppsModel.Store.People" Multiplicity="1" />
+          <End Role="Autos" Type="SDNAppsModel.Store.Autos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Autos">
+              <PropertyRef Name="WhosCar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gallons_Autos">
+          <End Role="Autos" Type="SDNAppsModel.Store.Autos" Multiplicity="1" />
+          <End Role="Gallons" Type="SDNAppsModel.Store.Gallons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autos">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Gallons">
+              <PropertyRef Name="AutoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SDNAppsModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SDNAppsEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Autos" EntityType="SDNAppsModel.Auto" />
+          <EntitySet Name="Gallons" EntityType="SDNAppsModel.Gallon" />
+          <EntitySet Name="People" EntityType="SDNAppsModel.Person" />
+          <AssociationSet Name="FK_Autos_People" Association="SDNAppsModel.FK_Autos_People">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Auto" EntitySet="Autos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gallons_Autos" Association="SDNAppsModel.FK_Gallons_Autos">
+            <End Role="Auto" EntitySet="Autos" />
+            <End Role="Gallon" EntitySet="Gallons" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Auto">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="WhosCar" Nullable="false" />
+          <Property Type="String" Name="AutoName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Person" Relationship="SDNAppsModel.FK_Autos_People" FromRole="Auto" ToRole="Person" />
+          <NavigationProperty Name="Gallons" Relationship="SDNAppsModel.FK_Gallons_Autos" FromRole="Auto" ToRole="Gallon" />
+        </EntityType>
+        <EntityType Name="Gallon">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="AutoID" Nullable="false" />
+          <Property Type="Int32" Name="TotalMiles" Nullable="false" />
+          <Property Type="Int32" Name="DrivenMiles" Nullable="false" />
+          <Property Type="Double" Name="TotalGallons" Nullable="false" />
+          <Property Type="Decimal" Name="TotalPrice" Precision="19" Scale="4" />
+          <Property Type="DateTime" Name="GasDate" Precision="0" />
+          <Property Type="Boolean" Name="TankFilled" Nullable="false" />
+          <NavigationProperty Name="Auto" Relationship="SDNAppsModel.FK_Gallons_Autos" FromRole="Gallon" ToRole="Auto" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="PersonName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Autos" Relationship="SDNAppsModel.FK_Autos_People" FromRole="Person" ToRole="Auto" />
+        </EntityType>
+        <Association Name="FK_Autos_People">
+          <End Type="SDNAppsModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="SDNAppsModel.Auto" Role="Auto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Auto">
+              <PropertyRef Name="WhosCar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gallons_Autos">
+          <End Type="SDNAppsModel.Auto" Role="Auto" Multiplicity="1" />
+          <End Type="SDNAppsModel.Gallon" Role="Gallon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auto">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Gallon">
+              <PropertyRef Name="AutoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SDNAppsModelStoreContainer" CdmEntityContainer="SDNAppsEntities">
+          <EntitySetMapping Name="Autos">
+            <EntityTypeMapping TypeName="SDNAppsModel.Auto">
+              <MappingFragment StoreEntitySet="Autos">
+                <ScalarProperty Name="AutoName" ColumnName="AutoName" />
+                <ScalarProperty Name="WhosCar" ColumnName="WhosCar" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gallons">
+            <EntityTypeMapping TypeName="SDNAppsModel.Gallon">
+              <MappingFragment StoreEntitySet="Gallons">
+                <ScalarProperty Name="TankFilled" ColumnName="TankFilled" />
+                <ScalarProperty Name="GasDate" ColumnName="GasDate" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="TotalGallons" ColumnName="TotalGallons" />
+                <ScalarProperty Name="DrivenMiles" ColumnName="DrivenMiles" />
+                <ScalarProperty Name="TotalMiles" ColumnName="TotalMiles" />
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="SDNAppsModel.Person">
+              <MappingFragment StoreEntitySet="People">
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

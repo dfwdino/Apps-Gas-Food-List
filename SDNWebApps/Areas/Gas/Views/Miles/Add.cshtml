@@ -1,0 +1,29 @@
+﻿@model SDNWebApps.Areas.Gas.Models.Miles.AddViewModel
+
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.AutoID)<br />
+    
+    @Html.LabelFor(m => m.TotalMiles)
+    @Html.TextBoxFor(m => m.TotalMiles)<br />
+
+    @Html.LabelFor(m => m.TotalGallons)
+    @Html.TextBoxFor(m => m.TotalGallons)<br />
+
+    @Html.LabelFor(m => m.TotalPrice)
+    @Html.TextBoxFor(m => m.TotalPrice)<br />
+
+    @Html.LabelFor(m => m.GasDate)
+    @Html.TextBoxFor(m => m.GasDate)<br />
+
+    @Html.LabelFor(m => m.DrivenMiles)
+    @Html.TextBoxFor(m => m.DrivenMiles)<br />
+
+    @Html.LabelFor(m => m.TankFilled)
+    @Html.CheckBoxFor(m => m.TankFilled)<br />
+
+<input type="submit" value="Add" />
+}
+
+@Html.ActionLink("View Miles","List","Miles", new {autoID = Model.AutoID},null)

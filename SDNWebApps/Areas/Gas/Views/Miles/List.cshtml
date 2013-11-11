@@ -1,0 +1,35 @@
+﻿@using System.Diagnostics.Contracts
+@using System.Globalization
+@using Microsoft.SqlServer.Server
+@model SDNWebApps.Areas.Gas.Models.Miles.ListViewModel
+
+@{
+    ViewBag.Title = "ListMiles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.ActionLink("Add","Add","Miles",new {autoID= Model.autoID},null)
+@Html.ActionLink("List Auto","List","Auto",new {personID = 1},null)
+
+<h2>ListMiles for</h2>
+<!--TODO: Make CSS file-->
+<table id="AutoList" style="border-style:none">
+    <tr>
+        <td style="border-style: solid; border-width: 1px">@Html.Label("Total Miles Driven")</td>
+        <td style="border-style: solid; border-width: 1px">@Html.Label("Price for Gas")</td>
+        <td style="border-style: solid; border-width: 1px">@Html.Label("Miles Drive Since Last Trip")</td>
+    </tr>
+
+    @{
+        foreach (var fillup in Model.Gallons)
+        {
+            <tr>
+                <td style="border-style: solid; border-width: 1px">@fillup.TotalMiles.ToString("n")</td>
+                <td style="border-style: solid; border-width: 1px">$@fillup.TotalPrice</td>
+                <td style="border-style: solid; border-width: 1px">@fillup.DrivenMiles.ToString("n")</td>
+            </tr>
+        
+        
+        }
+    }
+</table>

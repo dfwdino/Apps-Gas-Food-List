@@ -1,0 +1,18 @@
+﻿@model SDNWebApps.Areas.Gas.Models.Person.ListViewModel
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List</h2>
+
+@{
+    foreach (var item in Model.Persons)
+    {
+        @Html.ActionLink(item.PersonName,"List","Auto", new {personid = item.ID},null)<br/>
+    }
+}
+
+
+@Html.ActionLink("Add Person","Add","Person",null,null)
