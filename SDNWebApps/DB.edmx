@@ -4,33 +4,20 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SDNAppsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="SDNAppsModelStoreContainer">
-          <EntitySet Name="Autos" EntityType="SDNAppsModel.Store.Autos" store:Type="Tables" Schema="Gas" />
-          <EntitySet Name="Gallons" EntityType="SDNAppsModel.Store.Gallons" store:Type="Tables" Schema="Gas" />
-          <EntitySet Name="People" EntityType="SDNAppsModel.Store.People" store:Type="Tables" Schema="Gas" />
-          <AssociationSet Name="FK_Autos_People" Association="SDNAppsModel.Store.FK_Autos_People">
-            <End Role="People" EntitySet="People" />
-            <End Role="Autos" EntitySet="Autos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Gallons_Autos" Association="SDNAppsModel.Store.FK_Gallons_Autos">
-            <End Role="Autos" EntitySet="Autos" />
-            <End Role="Gallons" EntitySet="Gallons" />
-          </AssociationSet>
-        </EntityContainer>
+    <Schema Namespace="SDNAppsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Autos">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="WhosCar" Type="int" Nullable="false" />
-          <Property Name="AutoName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="AutoName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Gallons">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AutoID" Type="int" Nullable="false" />
           <Property Name="TotalMiles" Type="int" Nullable="false" />
           <Property Name="DrivenMiles" Type="int" Nullable="false" />
@@ -43,12 +30,12 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="PersonName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_Autos_People">
-          <End Role="People" Type="SDNAppsModel.Store.People" Multiplicity="1" />
-          <End Role="Autos" Type="SDNAppsModel.Store.Autos" Multiplicity="*" />
+          <End Role="People" Type="Self.People" Multiplicity="1" />
+          <End Role="Autos" Type="Self.Autos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="People">
               <PropertyRef Name="ID" />
@@ -59,8 +46,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Gallons_Autos">
-          <End Role="Autos" Type="SDNAppsModel.Store.Autos" Multiplicity="1" />
-          <End Role="Gallons" Type="SDNAppsModel.Store.Gallons" Multiplicity="*" />
+          <End Role="Autos" Type="Self.Autos" Multiplicity="1" />
+          <End Role="Gallons" Type="Self.Gallons" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Autos">
               <PropertyRef Name="ID" />
@@ -70,6 +57,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="SDNAppsModelStoreContainer">
+          <EntitySet Name="Autos" EntityType="Self.Autos" Schema="Gas" store:Type="Tables" />
+          <EntitySet Name="Gallons" EntityType="Self.Gallons" Schema="Gas" store:Type="Tables" />
+          <EntitySet Name="People" EntityType="Self.People" Schema="Gas" store:Type="Tables" />
+          <AssociationSet Name="FK_Autos_People" Association="Self.FK_Autos_People">
+            <End Role="People" EntitySet="People" />
+            <End Role="Autos" EntitySet="Autos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gallons_Autos" Association="Self.FK_Gallons_Autos">
+            <End Role="Autos" EntitySet="Autos" />
+            <End Role="Gallons" EntitySet="Gallons" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -197,6 +197,7 @@
         <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

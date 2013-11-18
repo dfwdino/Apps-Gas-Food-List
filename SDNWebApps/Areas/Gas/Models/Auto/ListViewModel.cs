@@ -7,14 +7,16 @@ namespace SDNWebApps.Areas.Gas.Models.Auto
 {
     public class ListViewModel
     {
-        public ListViewModel(List<SDNWebApps.Auto> a)
+        public ListViewModel(List<SDNWebApps.Auto> a,SDNWebApps.Person p)
         {
             Auto = a;
-            PersonName = a == null ? "" : a.FirstOrDefault().Person.PersonName;
+            Person = p;
+            
         }
 
         public List<SDNWebApps.Auto> Auto { get; set; }
-        public string PersonName {get; set; }
+        public SDNWebApps.Person Person { get; set; }
+
 
 
 

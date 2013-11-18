@@ -9,14 +9,17 @@ namespace SDNWebApps.Areas.Gas.Controllers
 {
     public class AutoController : Controller
     {
-        //
-        // GET: /Gas/Auto/
+        SDNAppsEntities _se = new SDNAppsEntities();
+
+        //public AutoController(SDNAppsEntities se)
+        //{
+        //    _se = se;
+        //}
+
 
         public ActionResult List(int personid)
         {
-            SDNAppsEntities se = new SDNAppsEntities();
-          
-            ListViewModel lvm = new ListViewModel(se.Autos.Where(m => m.WhosCar == personid).ToList());
+            ListViewModel lvm = new ListViewModel(_se.Autos.Where(m => m.WhosCar == personid).ToList(),_se.People.Where(m => m.ID == personid).FirstOrDefault());
 
             return View(lvm);
         }
@@ -29,8 +32,15 @@ namespace SDNWebApps.Areas.Gas.Controllers
         [HttpPost]
         public ActionResult Add(AddViewModel avm)
         {
+            Auto a = new Auto();
 
-            return View();
+            a.AutoName = avm.AutoName;
+            a.WhosCar = avm.PersonID;
+
+            _se.Autos.Add(a);
+            _se.SaveChanges();
+
+            return View(avm);
         }
 
 

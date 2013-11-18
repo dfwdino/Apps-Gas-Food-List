@@ -2,13 +2,18 @@
 @model SDNWebApps.Areas.Gas.Models.Auto.AddViewModel
 
 @{
-    ViewBag.Title = "Add for " + Model.Name;
+    //ViewBag.Title = "Add for " + Model.Name;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Add</h2>
 
-@Html.LabelFor(m => m.AutoName)
-@Html.TextBoxFor(m => m.AutoName)
+@using (Html.BeginForm())
+{
 
 @Html.LabelFor(m => m.AutoName)
+@Html.TextBoxFor(m => m.AutoName)<br/>
+
+    <input type="submit" value="Add" />
+}
+

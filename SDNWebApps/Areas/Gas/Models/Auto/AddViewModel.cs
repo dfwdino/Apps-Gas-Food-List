@@ -11,7 +11,7 @@ namespace SDNWebApps.Areas.Gas.Models.Auto
     {
         public AddViewModel()
         {
-
+            
         }
 
         public AddViewModel(SDNWebApps.Auto auto)

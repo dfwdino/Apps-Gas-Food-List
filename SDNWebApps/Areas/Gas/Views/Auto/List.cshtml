@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Auto for @Model.Auto[0].Person.PersonName</h2>
+<h2>Auto for @Model.Person.PersonName</h2>
 
 <table id="AutoList" style="border-style:none">
     
@@ -21,4 +21,4 @@
 
 </table>
 
-@Html.ActionLink("Add Auto","Add","Auto",new {autoID = Model.Auto[0].ID},null)
+@Html.ActionLink("Add Auto","Add","Auto",new {personID = Model.Person.ID},null)
