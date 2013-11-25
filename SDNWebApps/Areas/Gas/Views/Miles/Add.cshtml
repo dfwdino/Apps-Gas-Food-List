@@ -1,5 +1,10 @@
 ﻿@model SDNWebApps.Areas.Gas.Models.Miles.AddViewModel
 
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
 <h2>@ViewBag.Title</h2>
 @using (Html.BeginForm())
 {
@@ -26,4 +31,6 @@
 <input type="submit" value="Add" />
 }
 
+<br/>
+<br />
 @Html.ActionLink("View Miles","List","Miles", new {autoID = Model.AutoID},null)

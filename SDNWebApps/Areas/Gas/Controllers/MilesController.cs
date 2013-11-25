@@ -13,7 +13,9 @@ namespace SDNWebApps.Areas.Gas.Controllers
         public ActionResult List(int autoID)
         {
             Models.Miles.ListViewModel lmvModel = new Models.Miles.ListViewModel(ae.Gallons.Where(m => m.AutoID == autoID).OrderBy(m => m.TotalMiles).ToList());
+
             lmvModel.autoID = autoID;
+
             return View(lmvModel);
         }
 
