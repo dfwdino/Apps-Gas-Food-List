@@ -1,0 +1,52 @@
+﻿@using SDNWebApps
+@model IQueryable<SDNWebApps.Item>
+
+@{
+    ViewBag.Title = "title";
+}
+    
+<script src="~/Scripts/jquery-2.0.3.js" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+    
+    $(document).ready(function () {
+        $('a.delete-link').click(OnDeleteClick);
+    });
+
+    function OnDeleteClick(e)
+    {
+        var rowdel = document.getElementById('FullItem{' + e.target.id + '}');
+        rowdel.parentNode.removeChild(rowdel);
+
+        $.post("/GroceryList/Home/DeleteItem", { itemID: e.target.id },
+              function (result) // success
+              {
+                  alert('tea');
+              },
+              function (msg) // error
+              {
+                  alert('Error');
+              }
+             );
+        return false; // for the button
+}
+</script>
+
+
+<h2>title</h2>
+@using (Html.BeginForm())
+{
+    @*@Html.EditorForModel()*@
+    <table id="ItemsTable">
+        @{
+            foreach (Item item in Model)
+            {
+                <tr id="FullItem{@item.ID}">
+                    <td style="width: 50px">@item.Name</td>
+                    <td style="width: 50px">@item.Price</td>
+                    <td style="width: 50px">@item.Store.StoreName</td>
+                    <td style="width: 50px"><a href="#" id=@item.ID class="delete-link">test</a></td>
+                </tr>
+            }
+        }
+    </table>
+}

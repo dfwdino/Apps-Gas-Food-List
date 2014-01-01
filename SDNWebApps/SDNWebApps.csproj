@@ -138,6 +138,9 @@
     <Compile Include="Areas\Gas\Models\Auto\ListViewModel.cs" />
     <Compile Include="Areas\Gas\Models\Person\AddViewModel.cs" />
     <Compile Include="Areas\Gas\Models\Person\ListViewModel.cs" />
+    <Compile Include="Areas\GroceryList\Controllers\HomeController.cs" />
+    <Compile Include="Areas\GroceryList\GroceryListAreaRegistration.cs" />
+    <Compile Include="Areas\GroceryList\Models\Home\ItemsViewModel.cs" />
     <Compile Include="Auto.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
@@ -162,10 +165,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Item.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Person.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Store.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -248,9 +257,12 @@
     <Content Include="Areas\Gas\Views\Person\List.cshtml" />
     <Content Include="Areas\Gas\Views\Auto\Add.cshtml" />
     <Content Include="Areas\Gas\Views\Person\Add.cshtml" />
-    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.8.2.js" />
-    <Content Include="Scripts\jquery-1.8.2.min.js" />
+    <Content Include="Areas\GroceryList\Views\Home\Index.cshtml" />
+    <Content Include="Areas\GroceryList\Views\Web.config" />
+    <None Include="Scripts\jquery-2.0.3.intellisense.js" />
+    <Content Include="Scripts\jquery-2.0.3.js" />
+    <Content Include="Scripts\jquery-2.0.3.min.js" />
+    <Content Include="Scripts\jquery-2.0.3.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />

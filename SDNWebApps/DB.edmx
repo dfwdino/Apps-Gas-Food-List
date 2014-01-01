@@ -33,6 +33,23 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PersonName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Items">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StoreID" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Price" Type="money" />
+          <Property Name="Have" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stores">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StoreName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Autos_People">
           <End Role="People" Type="Self.People" Multiplicity="1" />
           <End Role="Autos" Type="Self.Autos" Multiplicity="*" />
@@ -57,10 +74,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Items_Stores">
+          <End Role="Stores" Type="Self.Stores" Multiplicity="0..1" />
+          <End Role="Items" Type="Self.Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stores">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="SDNAppsModelStoreContainer">
           <EntitySet Name="Autos" EntityType="Self.Autos" Schema="Gas" store:Type="Tables" />
           <EntitySet Name="Gallons" EntityType="Self.Gallons" Schema="Gas" store:Type="Tables" />
           <EntitySet Name="People" EntityType="Self.People" Schema="Gas" store:Type="Tables" />
+          <EntitySet Name="Items" EntityType="Self.Items" Schema="Grocery" store:Type="Tables" />
+          <EntitySet Name="Stores" EntityType="Self.Stores" Schema="Grocery" store:Type="Tables" />
           <AssociationSet Name="FK_Autos_People" Association="Self.FK_Autos_People">
             <End Role="People" EntitySet="People" />
             <End Role="Autos" EntitySet="Autos" />
@@ -68,6 +99,10 @@
           <AssociationSet Name="FK_Gallons_Autos" Association="Self.FK_Gallons_Autos">
             <End Role="Autos" EntitySet="Autos" />
             <End Role="Gallons" EntitySet="Gallons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_Stores" Association="Self.FK_Items_Stores">
+            <End Role="Stores" EntitySet="Stores" />
+            <End Role="Items" EntitySet="Items" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -85,6 +120,12 @@
           <AssociationSet Name="FK_Gallons_Autos" Association="SDNAppsModel.FK_Gallons_Autos">
             <End Role="Auto" EntitySet="Autos" />
             <End Role="Gallon" EntitySet="Gallons" />
+          </AssociationSet>
+          <EntitySet Name="Items" EntityType="SDNAppsModel.Item" />
+          <EntitySet Name="Stores" EntityType="SDNAppsModel.Store" />
+          <AssociationSet Name="FK_Items_Stores" Association="SDNAppsModel.FK_Items_Stores">
+            <End Role="Store" EntitySet="Stores" />
+            <End Role="Item" EntitySet="Items" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Auto">
@@ -143,6 +184,37 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StoreID" Type="Int32" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Have" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Store" Relationship="SDNAppsModel.FK_Items_Stores" FromRole="Item" ToRole="Store" />
+        </EntityType>
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StoreName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Items" Relationship="SDNAppsModel.FK_Items_Stores" FromRole="Store" ToRole="Item" />
+        </EntityType>
+        <Association Name="FK_Items_Stores">
+          <End Type="SDNAppsModel.Store" Role="Store" Multiplicity="0..1" />
+          <End Type="SDNAppsModel.Item" Role="Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -180,7 +252,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="SDNAppsModel.Item">
+              <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="Have" ColumnName="Have" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stores">
+            <EntityTypeMapping TypeName="SDNAppsModel.Store">
+              <MappingFragment StoreEntitySet="Stores">
+                <ScalarProperty Name="StoreName" ColumnName="StoreName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

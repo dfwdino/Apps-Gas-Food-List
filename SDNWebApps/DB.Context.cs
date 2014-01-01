@@ -28,5 +28,7 @@ namespace SDNWebApps
         public DbSet<Auto> Autos { get; set; }
         public DbSet<Gallon> Gallons { get; set; }
         public DbSet<Person> People { get; set; }
+        public DbSet<Item> Items { get; set; }
+        public DbSet<Store> Stores { get; set; }
     }
 }
