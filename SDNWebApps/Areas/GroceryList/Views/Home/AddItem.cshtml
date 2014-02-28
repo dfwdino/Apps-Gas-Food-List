@@ -1,0 +1,57 @@
+﻿@using System.Web.Mvc.Html
+@using System.Web.UI.WebControls
+@model SDNWebApps.Areas.GroceryList.Models.Home.ItemsViewModel
+
+
+@{
+    ViewBag.Title = "Add Item";
+    Layout = "Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery-2.0.3.js" type="text/javascript"></script>
+
+<script language="javascript" type="text/javascript">
+
+    $(document).ready(function () {
+        $('a.add-link').click(OnDeleteClick);
+    });
+
+    function OnDeleteClick(e) {
+        var name = $("#Name").val();
+        var price = $("#Price").val();
+        var storeid = $("#SelectedItemId").val();
+
+        if (storeid.length ==0)
+            storeid = 3;
+
+        $.post("/GroceryList/Home/AddItem", { name: name, price: price, StoreID: storeid },
+              function (data) { });
+        document.getElementById('ItemAdded').innerHTML = name + " was added.";
+        document.getElementById('Name').value = "";
+        document.getElementById('Price').value = "";
+        document.getElementById('SelectedItemId')[1].selected = true;
+    }
+   
+</script>
+
+
+
+
+
+<h2>@ViewBag.Title</h2>
+<div id="ItemAdded"></div>
+<br/>
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(m => m.Name)
+    @Html.TextBoxFor(m => m.Name)<br/>
+    @Html.LabelFor(m => m.Price)
+    @Html.TextBoxFor(m => m.Price)<br/>
+    @Html.LabelFor(m => m.Store.StoreName)
+    @Html.DropDownListFor(x => x.SelectedItemId,Model.ListToUse,"Select Store")<br />
+
+    <a href="#" class="add-link">add</a>
+}
+
+
+
