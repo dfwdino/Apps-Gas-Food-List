@@ -140,6 +140,7 @@
     <Compile Include="Areas\Gas\Models\Person\ListViewModel.cs" />
     <Compile Include="Areas\GroceryList\Controllers\HomeController.cs" />
     <Compile Include="Areas\GroceryList\GroceryListAreaRegistration.cs" />
+    <Compile Include="Areas\GroceryList\Models\Home\ViewItemsVM.cs" />
     <Compile Include="Areas\GroceryList\Models\Home\ItemsViewModel.cs" />
     <Compile Include="Auto.cs">
       <DependentUpon>DB.tt</DependentUpon>
@@ -259,6 +260,11 @@
     <Content Include="Areas\Gas\Views\Person\Add.cshtml" />
     <Content Include="Areas\GroceryList\Views\Home\Index.cshtml" />
     <Content Include="Areas\GroceryList\Views\Web.config" />
+    <Content Include="Areas\GroceryList\Views\Home\AddItem.cshtml" />
+    <Content Include="Areas\GroceryList\Views\Home\Shared\_Layout.cshtml" />
+    <Content Include="Areas\GroceryList\Views\Home\AddStore.cshtml" />
+    <Content Include="Areas\GroceryList\Views\Home\ListStores.cshtml" />
+    <None Include="Properties\PublishProfiles\sdnwebapps.pubxml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
