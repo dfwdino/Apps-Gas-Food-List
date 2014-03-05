@@ -16,8 +16,15 @@ namespace SDNWebApps.Areas.GroceryList.Controllers
         {
             IQueryable<Item> gitems = sdnApps.Items;
 
-            if (!showAll)
+            if (showAll)
+            {
+                ViewBag.Title = "All Items";
+            }
+            else
+            { 
                 gitems = gitems.Where(m => m.Have == showAll);
+                ViewBag.Title = "Need Items";
+            }
 
             //a better way of doing this
             var itemsVM = gitems.Select(m => new ViewItemsVM
@@ -78,7 +85,12 @@ namespace SDNWebApps.Areas.GroceryList.Controllers
             if (price.IsNullOrWhiteSpace())
                 price = "0";
 
-            var newItem = new Item { Name = name, Price = Convert.ToDecimal(price), StoreID = storeID, Have = false };
+            var newItem = sdnApps.Items.First(m => m.Name == name);
+
+            if (newItem == null)
+                newItem = new Item {Name = name, Price = Convert.ToDecimal(price), StoreID = storeID, Have = false};
+            else
+                newItem.Have = false;
 
             sdnApps.Items.Add(newItem);
             sdnApps.SaveChanges();

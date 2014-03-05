@@ -2,38 +2,10 @@
 @using SDNWebApps.Areas.GroceryList.Models.Home
 @model IQueryable<SDNWebApps.Store>
 
-
 @{
     ViewBag.Title = "Grocery List";
-    Layout = "Shared/_Layout.cshtml";
+    Layout = "Shared/_GroceryListLayout.cshtml";
 }
-    
-<script src="~/Scripts/jquery-2.0.3.js" type="text/javascript"></script>
-<script language="javascript" type="text/javascript">
-    
-    $(document).ready(function () {
-        $('a.delete-link').click(OnDeleteClick);
-    });
-
-    function OnDeleteClick(e)
-    {
-        var rowdel = document.getElementById('FullItem{' + e.target.id + '}');
-        rowdel.parentNode.removeChild(rowdel);
-
-        $.post("/GroceryList/Home/DeleteStore", { itemID: e.target.id },
-              function (result) // success
-              {
-                  alert('success');
-              },
-              function (result) // error
-              {
-                  alert('error');
-              }
-             );
-        return false; // for the button
-    }
-</script>
-
 
 <h2>@ViewBag.Title</h2>
 @using (Html.BeginForm())
@@ -51,3 +23,6 @@
         }
     </table>
 }
+
+<script src="~/Scripts/jquery-2.0.3.js" type="text/javascript"></script>
+<script src="~/Scripts/store.js"></script>

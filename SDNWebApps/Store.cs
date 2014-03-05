@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+
 namespace SDNWebApps
 {
     using System;
@@ -20,6 +22,7 @@ namespace SDNWebApps
         }
     
         public int ID { get; set; }
+        [DisplayName("Store Name")]
         public string StoreName { get; set; }
     
         public virtual ICollection<Item> Items { get; set; }

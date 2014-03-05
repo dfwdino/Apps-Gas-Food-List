@@ -261,11 +261,13 @@
     <Content Include="Areas\GroceryList\Views\Home\Index.cshtml" />
     <Content Include="Areas\GroceryList\Views\Web.config" />
     <Content Include="Areas\GroceryList\Views\Home\AddItem.cshtml" />
-    <Content Include="Areas\GroceryList\Views\Home\Shared\_Layout.cshtml" />
+    <Content Include="Areas\GroceryList\Views\Home\Shared\_GroceryListLayout.cshtml" />
     <Content Include="Areas\GroceryList\Views\Home\AddStore.cshtml" />
     <Content Include="Areas\GroceryList\Views\Home\ListStores.cshtml" />
     <None Include="Properties\PublishProfiles\sdnwebapps.pubxml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
+    <Content Include="Scripts\items - Copy.js" />
+    <Content Include="Scripts\store.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
     <Content Include="Scripts\jquery-2.0.3.min.map" />

@@ -1,88 +1,37 @@
 ﻿@using SDNWebApps
 @using SDNWebApps.Areas.GroceryList.Models.Home
-@*@model IQueryable<SDNWebApps.Item>*@
 @model  List<ViewItemsVM>
 
 @{
-    ViewBag.Title = "Grocery List";
-    Layout = "Shared/_Layout.cshtml";
+    Layout = "Shared/_GroceryListLayout.cshtml";
 }
     
 <script src="~/Scripts/jquery-2.0.3.js" type="text/javascript"></script>
-<script language="javascript" type="text/javascript">
-    
-    $(document).ready(function () {
-        $('a.delete-link').click(OnDeleteClick);
-        $('a.got-link').click(OnGotClick);
-    });
-
-    function OnDeleteClick(e)
-    {
-        var rowdel = document.getElementById('FullItem{' + e.target.id + '}');
-        rowdel.parentNode.removeChild(rowdel);
-
-        $.post("/GroceryList/Home/DeleteItem", { itemID: e.target.id },
-              function (result) // success
-              {
-                  alert('success');
-              },
-              function (result) // error
-              {
-                  alert('error');
-              }
-             );
-        return false; // for the button
-    }
-
-    function OnGotClick(e) {
-        var rowdel = document.getElementById('FullItem{' + e.target.id + '}');
-        rowdel.parentNode.removeChild(rowdel);
-        var hasItem;
-
-        //need a find a better way
-        if (window.location.href.indexOf('showAll=True'))
-            hasItem = false;
-        else {
-            hasItem = true;
-        }
-
-        $.post("/GroceryList/Home/GotItem", { itemID: e.target.id, haveItem: hasItem },
-              function (result) // success
-              {
-                  alert('tea');
-              },
-              function (msg) // error
-              {
-                  alert('Error');
-              }
-             );
-        return false; // for the button
-    }
-</script>
+<script src="~/Scripts/items.js"></script>
 
 
 <h2>@ViewBag.Title</h2>
 @using (Html.BeginForm())
-{   
-    <table id="ItemsTable">
+{
+    <table id="ItemsTable" border=1 frame=void rules=rows>
         @{
     //needs to be redo
     <tr>
-                    <td style="width: 75px">@Html.LabelFor(model => model[0].Name)</td>
-                    <td style="width: 50px">@Html.LabelFor(model => model[0].Price)</td>
-                    <td style="width: 100px;text-align: center">@Html.LabelFor(model => model[0].Store)</td>
-                    <td style="width: 50px"></td>
-                </tr>
+        <td style="width: 75px">@Html.LabelFor(model => model[0].Name)</td>
+        <td style="width: 50px">@Html.LabelFor(model => model[0].Price)</td>
+        <td style="width: 100px;text-align: center">@Html.LabelFor(model => model[0].Store)</td>
+        <td style="width: 50px"></td>
+    </tr>
     foreach (ViewItemsVM item in Model)
-            {
-                
-                <tr id="FullItem{@item.ID}">
-                    <td><a href="#" id=@item.ID class="got-link">@item.Name</a></td>
-                    <td>@item.Price</td>
-                    <td text-align: center">@item.Store</td>
-                    <td><a href="#" id=@item.ID class="delete-link">Delete</a></td>
-                </tr>
-            }
+    {
+
+        <tr id="FullItem{@item.ID}">
+            <td><a href="#" id=@item.ID class="got-link">@item.Name</a></td>
+            <td>@item.Price</td>
+            <td text-align center">@item.Store</td>
+            <td><a href="#" id=@item.ID class="delete-link">Delete</a></td>
+        </tr>
+    }
         }
     </table>
 }
