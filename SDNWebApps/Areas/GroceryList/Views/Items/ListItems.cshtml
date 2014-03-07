@@ -1,0 +1,28 @@
+﻿@using SDNWebApps.Areas.GroceryList.Models.Home
+@model  List<ViewItemsVM>
+
+
+@using (Html.BeginForm())
+{
+    <table id="ItemsTable" border=1 frame=void rules=rows>
+        @{
+    //needs to be redo
+    <tr>
+        <td style="width: 75px">@Html.LabelFor(model => model[0].Name)</td>
+        <td style="width: 50px">@Html.LabelFor(model => model[0].Price)</td>
+        <td style="width: 100px;text-align: center">@Html.LabelFor(model => model[0].Store)</td>
+        <td style="width: 50px"></td>
+    </tr>
+    foreach (ViewItemsVM item in Model)
+    {
+
+        <tr id="FullItem{@item.ID}">
+            <td><a href="#" id=@item.ID class="got-link">@item.Name</a></td>
+            <td>@item.Price</td>
+            <td text-align center">@item.Store</td>
+            <td><a href="#" id=@item.ID class="delete-link">Delete</a></td>
+        </tr>
+    }
+        }
+    </table>
+}

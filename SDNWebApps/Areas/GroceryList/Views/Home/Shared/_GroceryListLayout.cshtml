@@ -22,9 +22,9 @@
 <body>
     <span><label id="HeaderLablel">Items: </label>@Html.ActionLink("Need", "Index", "Home")
     @Html.ActionLink("All", "Index", "Home", new { showAll = true }, null)
-    @Html.ActionLink("Add", "AddItem", "Home")</span>
+    @Html.ActionLink("Add", "AddItem", "Items")</span>
     <br/>
-    <span><label id="HeaderLablel">Store: </label>@Html.ActionLink("Add", "AddStore", "Home")  @Html.ActionLink("All", "ListStores", "Home")</span>
+    <span><label id="HeaderLablel">Store: </label>@Html.ActionLink("Add", "AddStore", "Stores")  @Html.ActionLink("All", "Stores", "Stores")</span>
 
     @RenderBody()
 
