@@ -9,30 +9,8 @@
 }
 
 <script src="~/Scripts/jquery-2.0.3.js" type="text/javascript"></script>
+<script src="~/Scripts/items.js"></script>
 
-<script language="javascript" type="text/javascript">
-
-    $(document).ready(function () {
-        $('a.add-link').click(OnDeleteClick);
-    });
-
-    function OnDeleteClick(e) {
-        var name = $("#Name").val();
-        var price = $("#Price").val();
-        var storeid = $("#SelectedItemId").val();
-
-        if (storeid.length ==0)
-            storeid = 3;
-
-        $.post("/GroceryList/Home/AddItem", { name: name, price: price, StoreID: storeid },
-              function (data) { });
-        document.getElementById('ItemAdded').innerHTML = name + " was added.";
-        document.getElementById('Name').value = "";
-        document.getElementById('Price').value = "";
-        document.getElementById('SelectedItemId')[1].selected = true;
-    }
-   
-</script>
 
 <style>
     label {

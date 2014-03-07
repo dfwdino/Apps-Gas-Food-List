@@ -40,7 +40,7 @@ namespace SDNWebApps.Areas.GroceryList.Controllers
         if (price.IsNullOrWhiteSpace())
             price = "0";
 
-        var newItem = sdnApps.Items.First(m => m.Name == name);
+        var newItem = sdnApps.Items.FirstOrDefault(m => m.Name == name);
 
         if (newItem == null)
             newItem = new Item { Name = name, Price = Convert.ToDecimal(price), StoreID = storeID, Have = false };

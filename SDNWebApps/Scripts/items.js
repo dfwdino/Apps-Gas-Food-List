@@ -3,6 +3,7 @@
     $(document).ready(function () {
         $('a.delete-link').click(OnDeleteClick);
         $('a.got-link').click(OnGotClick);
+        $('a.add-link').click(OnAddClick);
     });
 
 function OnDeleteClick(e)
@@ -46,4 +47,20 @@ function OnGotClick(e) {
           }
          );
     return false; // for the button
+}
+
+function OnAddClick(e) {
+    var name = $("#Name").val();
+    var price = $("#Price").val();
+    var storeid = $("#SelectedItemId").val();
+
+    if (storeid.length == 0)
+        storeid = 3;
+
+    $.post("/GroceryList/Items/AddItem", { name: name, price: price, StoreID: storeid },
+          function (data) { });
+    document.getElementById('ItemAdded').innerHTML = name + " was added.";
+    document.getElementById('Name').value = "";
+    document.getElementById('Price').value = "";
+    document.getElementById('SelectedItemId')[1].selected = true;
 }
