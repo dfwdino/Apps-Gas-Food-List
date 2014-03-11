@@ -10,7 +10,7 @@
 @{
     foreach (var item in Model.Persons)
     {
-        @Html.ActionLink(item.PersonName,"List","Auto", new {personid = item.ID},null)<br/>
+        @Html.ActionLink(item.PersonName, "List", "Auto", new { id = item.ID }, null)<br/>
     }
 }
 

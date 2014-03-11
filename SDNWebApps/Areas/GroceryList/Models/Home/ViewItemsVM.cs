@@ -24,5 +24,6 @@ namespace SDNWebApps.Areas.GroceryList.Models.Home
         public string Name { get; set; }
         public string Price { get; set; }
         public string Store { get; set; }
+        public bool ShowAll { get; set; }
     }
 }

@@ -11,15 +11,12 @@ namespace SDNWebApps.Areas.Gas.Controllers
     {
         SDNAppsEntities _se = new SDNAppsEntities();
 
-        //public AutoController(SDNAppsEntities se)
-        //{
-        //    _se = se;
-        //}
-
-
-        public ActionResult List(int personid)
+        public ActionResult List(int id)
         {
-            ListViewModel lvm = new ListViewModel(_se.Autos.Where(m => m.WhosCar == personid).ToList(),_se.People.Where(m => m.ID == personid).FirstOrDefault());
+            ListViewModel lvm = new ListViewModel(_se.Autos.Where(m => m.WhosCar == id).ToList(),
+                                                    _se.People.FirstOrDefault(m => m.ID == id));
+
+            
 
             return View(lvm);
         }

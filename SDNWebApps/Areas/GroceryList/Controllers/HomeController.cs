@@ -32,7 +32,8 @@ namespace SDNWebApps.Areas.GroceryList.Controllers
                 ID = m.ID,
                 Name = m.Name,
                 Store = m.Store.StoreName,
-                Price = SqlFunctions.StringConvert((decimal) m.Price)
+                Price = SqlFunctions.StringConvert((decimal) m.Price),
+                ShowAll = showAll
 
             });
 

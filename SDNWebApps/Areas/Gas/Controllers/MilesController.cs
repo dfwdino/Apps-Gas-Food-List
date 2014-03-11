@@ -10,20 +10,22 @@ namespace SDNWebApps.Areas.Gas.Controllers
     {
         SDNAppsEntities ae = new SDNAppsEntities();
 
-        public ActionResult List(int autoID)
+        public ActionResult List(int id)
         {
-            Models.Miles.ListViewModel lmvModel = new Models.Miles.ListViewModel(ae.Gallons.Where(m => m.AutoID == autoID).OrderBy(m => m.TotalMiles).ToList());
+            ListViewModel lmvModel = new Models.Miles.ListViewModel(ae.Gallons.Where(m => m.AutoID == id).OrderBy(m => m.TotalMiles).ToList());
 
-            lmvModel.autoID = autoID;
+            lmvModel.PersonID = ae.Autos.First(m => m.ID == id).Person.ID.ToString();
+            lmvModel.autoID = id;
+            lmvModel.AutoName = ae.Autos.First(m => m.ID == id).AutoName;
 
             return View(lmvModel);
         }
 
        
 
-        public ActionResult Add(int autoID)
+        public ActionResult Add(int id)
         {
-            Models.Miles.AddViewModel lmvModel = new Models.Miles.AddViewModel(autoID);
+            Models.Miles.AddViewModel lmvModel = new Models.Miles.AddViewModel(id);
             ViewBag.Title = "Add";
 
             return View(lmvModel);

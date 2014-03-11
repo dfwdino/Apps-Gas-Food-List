@@ -19,6 +19,11 @@ namespace SDNWebApps.Areas.Gas
                 "Gas/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
+            context.MapRoute(
+                "Gas_miles",
+                "Gas/{controller}/{action}/{id}/",
+                new { action = "Index", id = UrlParameter.Optional }
+            );
         }
     }
 }
