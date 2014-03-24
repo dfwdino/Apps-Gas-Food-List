@@ -12,16 +12,12 @@ namespace SDNWebApps
     using System;
     using System.Collections.Generic;
     
-    public partial class Store
+    public partial class Task
     {
-        public Store()
-        {
-            this.Items = new HashSet<Item>();
-        }
-    
         public int ID { get; set; }
-        public string StoreName { get; set; }
-    
-        public virtual ICollection<Item> Items { get; set; }
+        public string Title { get; set; }
+        public Nullable<System.DateTime> DueDate { get; set; }
+        public bool Done { get; set; }
+        public Nullable<int> Person { get; set; }
     }
 }

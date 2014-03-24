@@ -20,6 +20,8 @@ namespace SDNWebApps.Areas.GroceryList.Models.Home
 
         }
 
+        public List<Item> Items { get; set; }
+
         public int ID { get; set; }
         public string Name { get; set; }
         public string Price { get; set; }

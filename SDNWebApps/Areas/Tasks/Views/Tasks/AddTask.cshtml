@@ -1,0 +1,26 @@
+﻿@model SDNWebApps.Task
+
+@{
+    ViewBag.Title = "AddTask";
+}
+
+<h2>@ViewBag.Title</h2>
+<div id="TaskAdded"></div>
+
+
+@using (Html.BeginForm())
+{<div>
+        @Html.LabelFor(m => m.Title)
+        @Html.TextBoxFor(m => m.Title)<br />
+        @Html.LabelFor(m => m.DueDate)
+        @Html.TextAreaFor(m => m.DueDate)<br />
+        @Html.LabelFor(m => m.Person)
+        
+        
+    </div>
+
+    <p><a href="#" class="add-link">Add</a></p>
+}
+
+<script src="~/Scripts/jquery-2.0.3.js" type="text/javascript"></script>
+<script src="~/Scripts/tasks.js?v=2"></script>

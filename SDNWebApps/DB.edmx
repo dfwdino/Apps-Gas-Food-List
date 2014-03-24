@@ -50,6 +50,16 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StoreName" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Tasks">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DueDate" Type="date" />
+          <Property Name="Done" Type="bit" Nullable="false" />
+          <Property Name="Person" Type="int" />
+        </EntityType>
         <Association Name="FK_Autos_People">
           <End Role="People" Type="Self.People" Multiplicity="1" />
           <End Role="Autos" Type="Self.Autos" Multiplicity="*" />
@@ -92,6 +102,7 @@
           <EntitySet Name="People" EntityType="Self.People" Schema="Gas" store:Type="Tables" />
           <EntitySet Name="Items" EntityType="Self.Items" Schema="Grocery" store:Type="Tables" />
           <EntitySet Name="Stores" EntityType="Self.Stores" Schema="Grocery" store:Type="Tables" />
+          <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="Task" store:Type="Tables" />
           <AssociationSet Name="FK_Autos_People" Association="Self.FK_Autos_People">
             <End Role="People" EntitySet="People" />
             <End Role="Autos" EntitySet="Autos" />
@@ -127,6 +138,7 @@
             <End Role="Store" EntitySet="Stores" />
             <End Role="Item" EntitySet="Items" />
           </AssociationSet>
+          <EntitySet Name="Tasks" EntityType="SDNAppsModel.Task" />
         </EntityContainer>
         <EntityType Name="Auto">
           <Key>
@@ -215,6 +227,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DueDate" Type="DateTime" Precision="0" />
+          <Property Name="Done" Type="Boolean" Nullable="false" />
+          <Property Name="Person" Type="Int32" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -267,6 +289,17 @@
             <EntityTypeMapping TypeName="SDNAppsModel.Store">
               <MappingFragment StoreEntitySet="Stores">
                 <ScalarProperty Name="StoreName" ColumnName="StoreName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="SDNAppsModel.Task">
+              <MappingFragment StoreEntitySet="Tasks">
+                <ScalarProperty Name="Person" ColumnName="Person" />
+                <ScalarProperty Name="Done" ColumnName="Done" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

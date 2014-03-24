@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Objects.SqlClient;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -15,10 +16,13 @@ namespace SDNWebApps.Areas.GroceryList.Controllers
         public ActionResult Index(bool showAll=false)
         {
             IQueryable<Item> gitems = sdnApps.Items;
+            Item item = new Item();
+            var itemsVM = new ViewItemsVM();
 
             if (showAll)
             {
                 ViewBag.Title = "All Items";
+                itemsVM.ShowAll = showAll;
             }
             else
             { 
@@ -26,18 +30,10 @@ namespace SDNWebApps.Areas.GroceryList.Controllers
                 ViewBag.Title = "Need Items";
             }
 
-            //a better way of doing this
-            var itemsVM = gitems.Select(m => new ViewItemsVM
-            {
-                ID = m.ID,
-                Name = m.Name,
-                Store = m.Store.StoreName,
-                Price = SqlFunctions.StringConvert((decimal) m.Price),
-                ShowAll = showAll
+            itemsVM.Items = gitems.OrderBy(m => m.Name).ToList();
 
-            });
 
-            return View(itemsVM.ToList());
+            return View(itemsVM);
         }
 
 

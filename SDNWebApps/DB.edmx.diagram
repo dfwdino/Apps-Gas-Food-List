@@ -6,13 +6,14 @@
     <edmx:Diagrams>
       <Diagram DiagramId="664f2b62b3084f54aea347893176ec1d" Name="Diagram1" ZoomLevel="110">
         <EntityTypeShape EntityType="SDNAppsModel.Auto" Width="1.5" PointX="3.875" PointY="0.625" />
-        <EntityTypeShape EntityType="SDNAppsModel.Gallon" Width="1.5" PointX="2.25" PointY="2.5" />
+        <EntityTypeShape EntityType="SDNAppsModel.Gallon" Width="1.5" PointX="4" PointY="2.75" />
         <EntityTypeShape EntityType="SDNAppsModel.Person" Width="1.5" PointX="0.875" PointY="0.625" />
         <AssociationConnector Association="SDNAppsModel.FK_Autos_People" />
         <AssociationConnector Association="SDNAppsModel.FK_Gallons_Autos" />
         <EntityTypeShape EntityType="SDNAppsModel.Item" Width="1.5" PointX="8.5" PointY="0.625" />
         <EntityTypeShape EntityType="SDNAppsModel.Store" Width="1.5" PointX="6.25" PointY="1" />
         <AssociationConnector Association="SDNAppsModel.FK_Items_Stores" />
+        <EntityTypeShape EntityType="SDNAppsModel.Task" Width="1.5" PointX="0.75" PointY="3.125" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

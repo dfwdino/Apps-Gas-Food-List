@@ -1,43 +1,21 @@
 ﻿@using SDNWebApps.Areas.GroceryList.Models.Home
-@*Need to redo*@
-@model  List<ViewItemsVM>
+@model  ViewItemsVM
 
 
 @using (Html.BeginForm())
 {
-    <table id="ItemsTable" border=1 frame=void rules=rows>
-        @{
-            //needs to be redo
-            <tr>
-                <td style="width: 125px">@Html.LabelFor(model => model[0].Name)</td>
-                @*<td style="width: 50px">@Html.LabelFor(model => model[0].Price)</td>
-        <td style="width: 100px;text-align: center">@Html.LabelFor(model => model[0].Store)</td>*@
-                @*WTF...Change this*@
-                @if (Model.Count > 0)
-                {
-                    if (Model[0].ShowAll)
-                    {
-                        <td style="width: 50px"></td>
-                    }
-                }
-            </tr>
-            foreach (ViewItemsVM item in Model)
-            {
 
-                <tr id="FullItem{@item.ID}">
-                    <td><a href="#" id=@item.ID class="got-link">@item.Name</a></td>
-                    @*<td>@item.Price</td>
-            <td text-align center">@item.Store</td>*@
-                    @*WTF...Change this*@
-                    @if (Model.Count > 0)
-                    {
-                        if (Model[0].ShowAll)
-                        {
-                            <td><a href="#" id=@item.ID class="delete-link">Delete</a></td>
-                        }
-                    }
-                </tr>
+    <p>@Html.LabelFor(model => model.Items[0].Name)</p>
+
+    foreach (var item in Model.Items)
+    {
+        <p id ="FullItem{@item.ID}">
+            <a href="#" id=@item.ID class="got-link">@Html.LabelForModel(item.Name)</a>
+            @if (Model.ShowAll)
+            {
+            <a href="#" id=@item.ID class="delete-link">Delete</a>
             }
-        }
-    </table>
+        </p>
+    }
+
 }

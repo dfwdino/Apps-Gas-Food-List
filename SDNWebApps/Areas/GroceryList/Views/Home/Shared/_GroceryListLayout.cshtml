@@ -8,23 +8,36 @@
     @Scripts.Render("~/bundles/modernizr")
     
     <style>
+        a.headerItems {
+            display: inline-block;
+            width: 50px;
+            padding-bottom: 2px;
+        }
         a {
             display: inline-block;
-            width: 40px;
+            width: 125px;
             padding-bottom: 2px;
         }
         #HeaderLablel {
-            width: 40px;
+            display: inline-block;
+            width: 46px;
+            padding-bottom: 6px;
         }
     </style>
 
 </head>
 <body>
-    <span><label id="HeaderLablel">Items: </label>@Html.ActionLink("Need", "Index", "Home")
-    @Html.ActionLink("All", "Index", "Home", new { showAll = true }, null)
-    @Html.ActionLink("Add", "AddItem", "Items")</span>
-    <br/>
-    <span><label id="HeaderLablel">Store: </label>@Html.ActionLink("Add", "AddStore", "Stores")  @Html.ActionLink("All", "Stores", "Stores")</span>
+    <span>
+        <label id="HeaderLablel">Items: </label>@Html.ActionLink("Need", "Index", "Home", null, new { @class = "headerItems" })
+        @Html.ActionLink("All", "Index", "Home", new { showAll = true }, new { @class = "headerItems" })
+        @Html.ActionLink("Add", "AddItem", "Items", null, new { @class = "headerItems" })
+    </span>
+    <br />
+    <span>
+        <label id="HeaderLablel">Store: </label>
+        @Html.ActionLink("Add", "AddStore", "Stores", null, new { @class = "headerItems" })
+        @Html.ActionLink("All", "Stores", "Stores", null, new { @class = "headerItems" })
+    </span>
 
     @RenderBody()
 

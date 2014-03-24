@@ -11,7 +11,7 @@ function OnDeleteClick(e)
     var rowdel = document.getElementById('FullItem{' + e.target.id + '}');
     rowdel.parentNode.removeChild(rowdel);
 
-    $.post("/GroceryList/Items/DeleteItem", { itemID: e.target.id },
+    $.post("/Tasks/Task/DeleteItem", { itemID: e.target.id },
           function (result) // success
           {
               alert('success');
@@ -25,20 +25,18 @@ function OnDeleteClick(e)
 }
 
 function OnGotClick(e) {
-    //var rowdel = document.getElementById('FullItem{' + e.target.id + '}');
-    //rowdel.parentNode.removeChild(rowdel);
-    var hasItem;
-    var itemID = e.target.parentElement.id;
-    document.getElementById('FullItem{' + itemID + '}').innerHTML = "";
+    var done;
+    var taskID = e.target.parentElement.id;
+    document.getElementById('FullItem{' + taskID + '}').innerHTML = "";
 
     //need a find a better way
     if (window.location.href.indexOf('showAll=True') < 0)
-        hasItem = true;
+        done = true;
     else {
-        hasItem = false;
+        done = false;
     }
 
-    $.post("/GroceryList/Items/GotItem", { itemID: itemID, haveItem: hasItem },
+    $.post("/Tasks/Tasks/GotTask", { taskID: taskID, done: done },
           function (result) // success
           {
               alert('tea');
@@ -52,17 +50,16 @@ function OnGotClick(e) {
 }
 
 function OnAddClick(e) {
-    var name = $("#Name").val();
-    var price = $("#Price").val();
-    var storeid = $("#SelectedItemId").val();
+    var title = $("#Title").val();
+    var duedate = $("#DueDate").val();
+    
+    //if (storeid.length == 0)
+    //    storeid = 3;
 
-    if (storeid.length == 0)
-        storeid = 3;
-
-    $.post("/GroceryList/Items/AddItem", { name: name, price: price, StoreID: storeid },
+    $.post("/Tasks/Tasks/AddTask", { Title: title, DueDate: duedate},
           function (data) { });
-    document.getElementById('ItemAdded').innerHTML = name + " was added.";
-    document.getElementById('Name').value = "";
-    document.getElementById('Price').value = "";
-    document.getElementById('SelectedItemId')[1].selected = true;
+    document.getElementById('TaskAdded').innerHTML = title + " was added.";
+    document.getElementById('Title').value = "";
+    document.getElementById('DueDate').value = "";
+    //document.getElementById('SelectedItemId')[1].selected = true;
 }

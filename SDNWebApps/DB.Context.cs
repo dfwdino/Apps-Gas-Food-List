@@ -30,5 +30,6 @@ namespace SDNWebApps
         public DbSet<Person> People { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Store> Stores { get; set; }
+        public DbSet<Task> Tasks { get; set; }
     }
 }
