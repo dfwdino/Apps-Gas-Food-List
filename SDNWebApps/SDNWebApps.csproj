@@ -278,6 +278,7 @@
     <Content Include="Areas\Tasks\Views\Home\Index.cshtml" />
     <Content Include="Areas\Tasks\Views\Home\ListTasks.cshtml" />
     <Content Include="Areas\Tasks\Views\Tasks\AddTask.cshtml" />
+    <Content Include="Areas\Tasks\Views\Shared\_TasksLayout.cshtml" />
     <None Include="Properties\PublishProfiles\sdnwebapps.pubxml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\tasks.js" />
@@ -310,12 +311,12 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\MainMenuBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Gas\Views\Shared\" />
     <Folder Include="Areas\Tasks\Models\" />
-    <Folder Include="Areas\Tasks\Views\Shared\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>

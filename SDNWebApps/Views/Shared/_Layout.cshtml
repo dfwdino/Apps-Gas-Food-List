@@ -7,13 +7,15 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
-    @RenderBody()
+    <body>
+        @RenderPage("~/Views/Shared/MainMenuBar.cshtml")
 
-    @Scripts.Render("~/bundles/jquery")
-    @RenderSection("scripts", required: false)
+        @RenderBody()
+
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
 
    
 
-</body>
+    </body>
 </html>

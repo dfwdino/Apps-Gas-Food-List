@@ -32,9 +32,13 @@ namespace SDNWebApps.Areas.Tasks.Controllers
         public JsonResult AddTask(string title, string duedate)
         {
             var newTask = sdnApps.Tasks.FirstOrDefault(m => m.Title == title);
+            DateTime? dueDate = null;
+
+            if (duedate != string.Empty)
+                dueDate = Convert.ToDateTime(duedate);
 
             if (newTask == null)
-                newTask = new Task {Title = title, DueDate = Convert.ToDateTime(duedate), Done = false};
+                newTask = new Task { Title = title, DueDate = dueDate, Done = false };
             else
             {
                 newTask.Done = false;
