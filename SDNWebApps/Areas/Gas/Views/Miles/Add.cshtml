@@ -16,12 +16,13 @@
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(m => m.AutoID)<br />
-
+    
+    @Html.LabelFor(m => m.TotalPrice)
+    @Html.TextBoxFor(m => m.TotalPrice)<br />
+    
     @Html.LabelFor(m => m.TotalGallons)
     @Html.TextBoxFor(m => m.TotalGallons)<br />
 
-    @Html.LabelFor(m => m.TotalPrice)
-    @Html.TextBoxFor(m => m.TotalPrice)<br />
     
     @Html.LabelFor(m => m.TotalMiles)
     @Html.TextBoxFor(m => m.TotalMiles)<br />

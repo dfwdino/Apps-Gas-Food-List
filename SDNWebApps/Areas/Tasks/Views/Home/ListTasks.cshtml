@@ -12,6 +12,7 @@
 </style>
 <span class="TaskItem">Item</span>
 <span>Due Date</span>
+<div class="BlackLine"></div>
 @using (Html.BeginForm())
 {
 
@@ -21,14 +22,15 @@
             <a href="#" id=@task.ID class="got-link TaskItem">@Html.LabelForModel(task.Title)</a>
             @if (task.DueDate.HasValue)
             {
-            <span> - @task.DueDate.Value.ToShortDateString()</span>
+                <span> - @task.DueDate.Value.ToShortDateString()</span>
             }
 
             @if (task.Done)
             {//Need to fix if statement
-            <a href="#" id=@task.ID class="delete-link">Delete</a>
+                <a href="#" id=@task.ID class="delete-link">Delete</a>
             }
         </div>
+    <div class="BlackLine"></div>
     }
 
 }

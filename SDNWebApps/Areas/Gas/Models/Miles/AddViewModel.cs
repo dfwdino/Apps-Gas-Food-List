@@ -31,11 +31,11 @@ namespace SDNWebApps.Areas.Gas.Models.Miles
         public int AutoID { get; set; }
         //public int PersonID { get; set; }
         [DisplayName("Total Miles")]
-        public int TotalMiles  { get; set; }
+        public int? TotalMiles  { get; set; }
         [DisplayName("Total Gallons")]
-        public double TotalGallons  { get; set; }
+        public double? TotalGallons  { get; set; }
         [DisplayName("Driven Miles")]
-        public int DrivenMiles { get; set; }
+        public int? DrivenMiles { get; set; }
         [DisplayName("Total Price")]
         public decimal? TotalPrice  { get; set; }
         [DisplayName("Gas Date")]

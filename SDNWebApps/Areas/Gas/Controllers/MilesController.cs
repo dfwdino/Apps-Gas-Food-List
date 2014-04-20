@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
@@ -28,6 +29,10 @@ namespace SDNWebApps.Areas.Gas.Controllers
             Models.Miles.AddViewModel lmvModel = new Models.Miles.AddViewModel(id);
             ViewBag.Title = "Add";
 
+            lmvModel.TotalGallons = null;
+            lmvModel.TotalMiles = null;
+            lmvModel.DrivenMiles = null;
+
             return View(lmvModel);
         }
 
@@ -37,26 +42,32 @@ namespace SDNWebApps.Areas.Gas.Controllers
             //if (ModelState.IsValid)
             //{
 
-                Gallon gallon = new Gallon();
+                Gallon gallon = new Gallon
+                {
+                    AutoID = addviewmodel.AutoID,
+                    TotalMiles = (int) (addviewmodel.TotalMiles ?? 0),
+                    TotalGallons = addviewmodel.TotalGallons ?? 0,
+                    DrivenMiles = addviewmodel.DrivenMiles ?? 0,
+                    TotalPrice = addviewmodel.TotalPrice,
+                    TankFilled = addviewmodel.TankFilled
+                };
 
-                gallon.AutoID = addviewmodel.AutoID;
-                gallon.TotalMiles = addviewmodel.TotalMiles;
-                gallon.TotalGallons = addviewmodel.TotalGallons;
-                gallon.DrivenMiles = addviewmodel.DrivenMiles;
-                gallon.TotalPrice = addviewmodel.TotalPrice;
-                gallon.TankFilled = addviewmodel.TankFilled;
-
-                if (addviewmodel.GasDate.HasValue)
-                    gallon.GasDate = addviewmodel.GasDate;
-                else
-                    gallon.GasDate = DateTime.Now;
+            if (addviewmodel.GasDate.HasValue)
+                gallon.GasDate = addviewmodel.GasDate;
+            else
+                gallon.GasDate = DateTime.Now;
 
                 ae.Gallons.Add(gallon);
                 int NumberOfChanges = ae.SaveChanges();
             //}
 
-            ViewBag.Title = "Edit";
-                return View(addviewmodel);
+            //ViewBag.Title = "Edit";
+
+            List<Gallon> test = ae.Gallons.Where(m => m.AutoID == addviewmodel.AutoID).ToList();
+
+            ListViewModel lvm = new ListViewModel(test);
+
+            return View("List", lvm);
         }
 
     }
