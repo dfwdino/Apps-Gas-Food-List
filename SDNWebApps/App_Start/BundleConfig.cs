@@ -24,7 +24,7 @@ namespace SDNWebApps
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
-
+            
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",
                         "~/Content/themes/base/jquery.ui.resizable.css",
@@ -38,6 +38,26 @@ namespace SDNWebApps
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
+
+
+            #region SDNWebApps
+
+            bundles.Add(new ScriptBundle("~/bundles/grocery").Include(
+                           "~/Scripts/items.js",
+                           "~/Scripts/store.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/task").Include(
+                        "~/Scripts/tasks.js"));
+
+            bundles.Add(new StyleBundle("~/Content/grocery").Include(
+                 "~/Content/grocery.css"));
+
+
+            #endregion
+
+
+
+
         }
     }
 }

@@ -3,16 +3,13 @@
 
 @using (Html.BeginForm())
 {
-    <table id="ItemsTable">
-        @{
-    //needs to be fixed
+
     foreach (Store item in Model)
     {
-        <tr id="FullItem{@item.ID}">
-            <td style="width: 100px"><a href="#">@item.StoreName</a></td>
-            <td style="width: 50px"><a href="#" id=@item.ID class="delete-link">Delete</a></td>
-        </tr>
+        <div id="FullItem{@item.ID}">
+            @Html.Label(@item.StoreName) - <a href="#" id=@item.ID class="delete-link">Delete</a>
+        </div>
+
+
     }
-        }
-    </table>
 }

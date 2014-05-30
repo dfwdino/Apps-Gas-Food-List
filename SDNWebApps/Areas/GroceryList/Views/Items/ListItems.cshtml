@@ -2,20 +2,22 @@
 @model  ViewItemsVM
 
 
+
 @using (Html.BeginForm())
 {
-
-    <p>@Html.LabelFor(model => model.Items[0].Name)</p>
-
     foreach (var item in Model.Items)
     {
-        <p id ="FullItem{@item.ID}">
-            <a href="#" id=@item.ID class="got-link">@Html.LabelForModel(item.Name)</a>
+        <div id="FullItem{@item.ID}">
+            <a href="#" class="got-link" id=@item.ID>@Html.LabelForModel(item.Name)</a>
             @if (Model.ShowAll)
             {
-            <a href="#" id=@item.ID class="delete-link">Delete</a>
+                <a href="#" id=@item.ID class="delete-link">Delete</a>
             }
-        </p>
+            <p class="BlackLine"></p>
+        </div>
+
+
+
     }
 
 }

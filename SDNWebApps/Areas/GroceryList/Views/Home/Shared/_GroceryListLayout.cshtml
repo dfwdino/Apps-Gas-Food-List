@@ -11,45 +11,51 @@
     <style>
         a.headerItems {
             display: inline-block;
-            width: 50px;
+            width: 30px;
             padding-bottom: 2px;
         }
-        a {
+        .got-link,delete-link {
             display: inline-block;
-            width: 125px;
+            width: 135px;
             padding-bottom: 2px;
         }
         #HeaderLablel {
             display: inline-block;
-            width: 46px;
+            width: 40px;
             padding-bottom: 6px;
+        }
+        span {
+            display: inline-block;
+            width: 175px;
         }
     </style>
 
 </head>
-    <body>
-        @RenderPage("~/Views/Shared/MainMenuBar.cshtml")
+<body>
+    @RenderPage("~/Views/Shared/MainMenuBar.cshtml")
 
-        <span>
-            <label id="HeaderLablel">Items: </label>@Html.ActionLink("Need", "Index", "Home", null, new { @class = "headerItems" })
-            @Html.ActionLink("All", "Index", "Home", new { showAll = true }, new { @class = "headerItems" })
-            @Html.ActionLink("Add", "AddItem", "Items", null, new { @class = "headerItems" })
-        </span>
-        
-        <span>
-            <label id="HeaderLablel">Store: </label>
-            @Html.ActionLink("Add", "AddStore", "Stores", null, new { @class = "headerItems" })
-            @Html.ActionLink("All", "Stores", "Stores", null, new { @class = "headerItems" })
-        </span>
+    <span>
+        <label id="HeaderLablel">Items:</label>
+        @Html.ActionLink("Add", "AddItem", "Items", null, new { @class = "headerItems" })
+        @Html.ActionLink("All", "Index", "Home", new { showAll = true }, new { @class = "headerItems" })
+        @Html.ActionLink("Need", "Index", "Home", null, new { @class = "headerItems" })
+    </span>
+
+    <span>
+        <label id="HeaderLablel">Store:</label>
+        @Html.ActionLink("Add", "AddStore", "Stores", null, new { @class = "headerItems" })
+        @Html.ActionLink("All", "Stores", "Stores", null, new { @class = "headerItems" })
+    </span>
+
+
+
+    @RenderBody()
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
     
- 
-
-        @RenderBody()
-
-        @Scripts.Render("~/bundles/jquery")
-        @RenderSection("scripts", required: false)
 
 
 
-    </body>
+</body>
 </html>
