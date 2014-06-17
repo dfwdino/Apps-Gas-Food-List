@@ -11,7 +11,7 @@
             <a href="#" class="got-link" id=@item.ID>@Html.LabelForModel(item.Name)</a>
             @if (Model.ShowAll)
             {
-                <a href="#" id=@item.ID class="delete-link">Delete</a>
+                <span> | <a href="#" id=@item.ID class="delete-link">Delete</a></span>
             }
             <p class="BlackLine"></p>
         </div>

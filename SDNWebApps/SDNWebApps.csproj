@@ -189,6 +189,9 @@
     <Content Include="Content\grocery.css">
       <DependentUpon>grocery.scss</DependentUpon>
     </Content>
+    <Content Include="Content\Main.css">
+      <DependentUpon>Main.scss</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -285,6 +288,10 @@
     <Content Include="Content\grocery.scss" />
     <Content Include="Content\grocery.css.map">
       <DependentUpon>grocery.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Main.scss" />
+    <Content Include="Content\Main.css.map">
+      <DependentUpon>Main.css</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\sdnwebapps.pubxml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />

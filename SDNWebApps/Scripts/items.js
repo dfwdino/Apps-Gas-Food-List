@@ -1,12 +1,12 @@
 ﻿
     
     $(document).ready(function () {
-        $('a.delete-link').click(OnDeleteClick);
+        $('a.delete-link').click(OnDeleteItemClick);
         $('a.got-link').click(OnGotClick);
-        $('a.add-link').click(OnAddClick);
+        $('a.add-item-link').click(OnAddItemClick);
     });
 
-function OnDeleteClick(e)
+function OnDeleteItemClick(e)
 {
     var rowdel = document.getElementById('FullItem{' + e.target.id + '}');
     rowdel.parentNode.removeChild(rowdel);
@@ -42,7 +42,7 @@ function OnGotClick(e) {
         hasItem = false;
     }
 
-    $.post("/GroceryList/Items/GotItem", { itemID: e.target.id, haveItem: hasItem },
+    $.post("/GroceryList/Items/GotItem", { itemID: itemID, haveItem: hasItem },
           function (result) // success
           {
               alert('tea');
@@ -55,7 +55,7 @@ function OnGotClick(e) {
     return false; // for the button
 }
 
-function OnAddClick(e) {
+function OnAddItemClick(e) {
     var name = $("#Name").val();
     var price = $("#Price").val();
     var storeid = $("#SelectedItemId").val();
