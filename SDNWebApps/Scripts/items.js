@@ -31,8 +31,9 @@ function OnGotClick(e) {
     
     //var id = 'FullItem{' + itemID + '}';
 
-    var div = document.getElementById(itemID);
-    div.parentNode.removeChild(div);
+    var div = document.getElementById('FullItem{' + itemID + '}');
+    div.innerHTML = "";
+    //div.parentNode.removeChild(div);
     
     
     //need a find a better way
